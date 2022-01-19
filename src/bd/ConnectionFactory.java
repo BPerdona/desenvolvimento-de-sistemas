@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
+
 public class ConnectionFactory {
     
     private static final String url = "jdbc:mysql://localhost:3306/exemplo";
