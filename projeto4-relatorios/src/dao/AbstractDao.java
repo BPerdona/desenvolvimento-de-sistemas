@@ -19,7 +19,7 @@ public abstract class AbstractDao implements Dao{
                 } if (paramValue instanceof Date){
                     ps.setDate(indexParam, (java.sql.Date) paramValue);
                 } else if (paramValue instanceof String){
-                    ps.setString(indexParam, (String) "%"+paramValue+"%");
+                    ps.setString(indexParam, (String) paramValue);
                 } else if (paramValue instanceof Short){
                     ps.setShort(indexParam, (Short) paramValue);
                 } else if (paramValue instanceof Double){

@@ -6,8 +6,8 @@ import model.PerfilUsuario;
 
 public class PerfilUsuarioController extends Controller{
  
-    public PerfilUsuarioController(){
+    public PerfilUsuarioController(PerfilUsuario perfilUsuario){
         this.dao = new PerfilUsuarioDao();
-        this.consultar(new PerfilUsuario());
+        this.consultar(perfilUsuario);
     }
 }

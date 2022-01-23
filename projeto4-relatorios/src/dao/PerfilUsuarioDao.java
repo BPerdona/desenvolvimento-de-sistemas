@@ -22,10 +22,13 @@ public class PerfilUsuarioDao extends AbstractDao {
         Connection connection = ConnectionFactory.getConnection();
         String sql = "select * from perfilUsuario where 1=1";
         
+        
+        System.out.println(((PerfilUsuario)model).getIdPerfilUsuario());
+        
         Map<Integer, Object> params = new HashMap<>();
         if(((PerfilUsuario)model).getIdPerfilUsuario()!=null){
             sql += " and idPerfilUsuario = ?";
-            params.put(params.size(), ((PerfilUsuario)model).getIdPerfilUsuario());
+            params.put(params.size()+1, ((PerfilUsuario)model).getIdPerfilUsuario());
         }
         try{
             PreparedStatement ps = connection.prepareStatement(sql);

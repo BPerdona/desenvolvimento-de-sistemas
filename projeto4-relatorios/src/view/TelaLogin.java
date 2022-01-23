@@ -23,6 +23,7 @@ public class TelaLogin extends javax.swing.JFrame {
      */
     public TelaLogin() {
         initComponents();
+        this.usuarioController = new UsuarioController();
     }
 
     /**
@@ -44,7 +45,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel1.setText("Login:");
 
-        textoLogin.setText("bruno");
+        textoLogin.setText("admin");
         textoLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textoLoginActionPerformed(evt);
@@ -53,7 +54,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
         jLabel2.setText("Senha:");
 
-        textoSenha.setText("senha");
+        textoSenha.setText("admin");
         textoSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textoSenhaActionPerformed(evt);
@@ -115,14 +116,13 @@ public class TelaLogin extends javax.swing.JFrame {
     private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarActionPerformed
         String login = textoLogin.getText();
         String senha = String.valueOf(textoSenha.getPassword());
-        List<Usuario> todosUsuarios = (List<Usuario>)(List<?>)this.usuarioController.getTuplas();
         this.usuarioController.consultar(new Usuario(login, senha));
-        Usuario usuario = null;
+        List<Usuario> todosUsuarios = (List<Usuario>)(List<?>)this.usuarioController.getTuplas();
         if(todosUsuarios.size() == 1){
             this.usuario = (Usuario)todosUsuarios.get(todosUsuarios.size()-1);
             java.awt.EventQueue.invokeLater(new Runnable() {
                public void run(){
-                   //new TelaPrincipal(TelaLogin.this).setVisible(true);
+                   new TelaPrincipal(TelaLogin.this).setVisible(true);
                } 
             });
         } else{
@@ -166,6 +166,10 @@ public class TelaLogin extends javax.swing.JFrame {
                 new TelaLogin().setVisible(true);
             }
         });
+    }
+    
+    public Usuario getUsuario(){
+        return this.usuario;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
