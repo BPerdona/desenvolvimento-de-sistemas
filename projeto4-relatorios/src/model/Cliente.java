@@ -14,6 +14,10 @@ public class Cliente extends Object{
     public Cliente() {
     }
     
+    public Cliente(String nome) {
+        this.nome = nome;
+    }
+    
     public Cliente(String nome, String endereco){
         this.nome = nome;
         this.endereco = endereco;

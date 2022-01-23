@@ -11,6 +11,10 @@ public class Filme extends Object {
 
     public Filme() {
     }
+    
+    public Filme(String codigo){
+        this.codigo=codigo;
+    }
 
     public Filme(String titulo, String genero, String produtora, String codigo){
         this.titulo = titulo;

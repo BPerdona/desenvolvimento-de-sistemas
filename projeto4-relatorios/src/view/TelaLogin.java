@@ -5,11 +5,18 @@
  */
 package view;
 
+import controller.UsuarioController;
+import java.util.List;
+import model.Usuario;
+import javax.swing.JOptionPane;
 /**
  *
  * @author bruno
  */
 public class TelaLogin extends javax.swing.JFrame {
+    
+    private UsuarioController usuarioController;
+    private Usuario usuario;
 
     /**
      * Creates new form TelaLogin
@@ -106,7 +113,24 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_textoSenhaActionPerformed
 
     private void botaoEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoEntrarActionPerformed
-        // TODO add your handling code here:
+        String login = textoLogin.getText();
+        String senha = String.valueOf(textoSenha.getPassword());
+        List<Usuario> todosUsuarios = (List<Usuario>)(List<?>)this.usuarioController.getTuplas();
+        this.usuarioController.consultar(new Usuario(login, senha));
+        Usuario usuario = null;
+        if(todosUsuarios.size() == 1){
+            this.usuario = (Usuario)todosUsuarios.get(todosUsuarios.size()-1);
+            java.awt.EventQueue.invokeLater(new Runnable() {
+               public void run(){
+                   //new TelaPrincipal(TelaLogin.this).setVisible(true);
+               } 
+            });
+        } else{
+            textoLogin.setText("");
+            textoSenha.setText("");
+            JOptionPane.showMessageDialog(this, "Usuário não encontrado!", "Tela login", 1);
+        }
+       
     }//GEN-LAST:event_botaoEntrarActionPerformed
 
     /**

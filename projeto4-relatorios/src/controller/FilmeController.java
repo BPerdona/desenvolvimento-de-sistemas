@@ -12,7 +12,7 @@ public class FilmeController extends Controller{
  
     public FilmeController(){
         this.dao = new FilmeDao();
-        this.consultar(new Filme());
+        this.consultar(new Filme(""));
     }
     
     public List<Object> getTuplasPorCodigo(String codigo){

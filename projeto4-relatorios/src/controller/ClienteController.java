@@ -13,7 +13,7 @@ public class ClienteController extends Controller{
     
     public List<Object> getTuplasPorNome(String nome){
         this.listaObjetos.clear();
-        this.listaObjetos = ((ClienteDao)this.dao).consultarNome(nome);
+        this.listaObjetos = ((ClienteDao)this.dao).consultar(new Cliente(nome));
         return this.listaObjetos;
     }
 }
