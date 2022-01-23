@@ -6,7 +6,7 @@ import java.util.List;
 import java.sql.PreparedStatement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import view.TelaFilme;
+import view.TFilme;
 import java.sql.SQLException;
 import model.Filme;
 import java.sql.ResultSet;
@@ -37,7 +37,7 @@ public class FilmeDao implements Dao{
             connection.close();
         }
         catch(SQLException ex){
-            Logger.getLogger(TelaFilme.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TFilme.class.getName()).log(Level.SEVERE, null, ex);
         }
         return alFilme;
     }
@@ -64,7 +64,7 @@ public class FilmeDao implements Dao{
             connection.close();
         }
         catch(SQLException ex){
-            Logger.getLogger(TelaFilme.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TFilme.class.getName()).log(Level.SEVERE, null, ex);
         }
         return alFilme;
     }
@@ -91,7 +91,7 @@ public class FilmeDao implements Dao{
             connection.close();
         }
         catch(SQLException ex){
-            Logger.getLogger(TelaFilme.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TFilme.class.getName()).log(Level.SEVERE, null, ex);
         }
         return alFilme;
     }
@@ -116,7 +116,7 @@ public class FilmeDao implements Dao{
             connection.close();
         }
         catch(SQLException ex){
-            Logger.getLogger(TelaFilme.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TFilme.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
     }
@@ -138,7 +138,7 @@ public class FilmeDao implements Dao{
             return true;
         }
         catch(SQLException ex){
-            Logger.getLogger(TelaFilme.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TFilme.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }
@@ -156,7 +156,7 @@ public class FilmeDao implements Dao{
             return true;
         }
         catch(SQLException ex){
-            Logger.getLogger(TelaFilme.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TFilme.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }

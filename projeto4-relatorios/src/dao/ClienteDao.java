@@ -7,14 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Cliente;
-import view.TelaCliente;
-import view.TelaDevolucao;
+import view.TCliente;
+import view.TDevolucao;
 
 public class ClienteDao implements Dao {
 
@@ -39,7 +37,7 @@ public class ClienteDao implements Dao {
             connection.close();
         }
         catch(SQLException ex){
-            Logger.getLogger(TelaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         return alCliente;
     }
@@ -61,7 +59,7 @@ public class ClienteDao implements Dao {
             connection.close();
         }
         catch(SQLException ex){
-            Logger.getLogger(TelaDevolucao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TDevolucao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return cliente;
     }
@@ -88,7 +86,7 @@ public class ClienteDao implements Dao {
             connection.close();
         }
         catch(SQLException ex){
-            Logger.getLogger(TelaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         return alCliente;
     }
@@ -111,7 +109,7 @@ public class ClienteDao implements Dao {
            connection.close();
        }
        catch(SQLException ex){
-            Logger.getLogger(TelaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
        return id;
     }
@@ -132,7 +130,7 @@ public class ClienteDao implements Dao {
             return true;
         }
         catch(SQLException ex){
-            Logger.getLogger(TelaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TCliente.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }
@@ -150,7 +148,7 @@ public class ClienteDao implements Dao {
             return true;
         }
         catch(SQLException ex){
-            Logger.getLogger(TelaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TCliente.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }

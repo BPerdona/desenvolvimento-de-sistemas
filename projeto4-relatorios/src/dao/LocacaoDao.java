@@ -15,8 +15,8 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import model.Locacao;
-import view.TelaDevolucao;
-import view.TelaLocacao;
+import view.TDevolucao;
+import view.TLocacao;
 
 public class LocacaoDao implements Dao{
 
@@ -43,7 +43,7 @@ public class LocacaoDao implements Dao{
             connection.close();
         }
         catch(SQLException ex){
-            Logger.getLogger(TelaLocacao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TLocacao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return alLocacao;
     }
@@ -77,7 +77,7 @@ public class LocacaoDao implements Dao{
             connection.close();
         }
         catch(SQLException ex){
-            Logger.getLogger(TelaLocacao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TLocacao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
     }
@@ -100,7 +100,7 @@ public class LocacaoDao implements Dao{
             return true;
         }
         catch(SQLException ex){
-            Logger.getLogger(TelaDevolucao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TDevolucao.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }   

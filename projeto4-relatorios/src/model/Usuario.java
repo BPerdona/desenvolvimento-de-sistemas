@@ -21,6 +21,13 @@ public class Usuario {
         this.senha = senha;
     }
     
+    public Usuario(String nome, String login, String senha, Integer perfilUsuario){
+        this.nome = nome;
+        this.login = login;
+        this.senha = senha;
+        this.perfilUsuario_idPerfilUsuario = perfilUsuario;
+    }
+    
     public Usuario(Integer idUsuario, String nome, String login, String senha, Short statusTupla, Integer perfilUsuario){
         this.idUsuario = idUsuario;
         this.nome = nome;

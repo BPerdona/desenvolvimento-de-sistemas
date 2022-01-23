@@ -13,6 +13,8 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Usuario;
+import view.TFilme;
+import view.TUsuario;
 
 public class UsuarioDao extends AbstractDao{
 
@@ -60,7 +62,22 @@ public class UsuarioDao extends AbstractDao{
 
     @Override
     public int inserir(Object model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection connection = ConnectionFactory.getConnection();
+        String codigoSql = "Insert into usuario (nome, login, senha, perfilUsuario_idPerfilUsuario) values ( ? , ? , md5(?), ?)";
+        int id = -1;
+        try{
+            PreparedStatement ps = connection.prepareStatement(codigoSql);
+            ps.setString(1, ((Usuario)model).getNome());
+            ps.setString(2, ((Usuario)model).getLogin());
+            ps.setString(3, ((Usuario)model).getSenha());
+            ps.setInt(4, ((Usuario)model).getPerfilUsuario_idPerfilUsuario());
+            ps.executeUpdate();
+            ps.close();
+            connection.close();
+        }catch(SQLException ex){
+            Logger.getLogger(TUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
     }
 
     @Override
@@ -70,7 +87,19 @@ public class UsuarioDao extends AbstractDao{
 
     @Override
     public boolean excluir(Object model) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection connection = ConnectionFactory.getConnection();
+        String codigoSql = "delete from usuario where idUsuario=?";
+        try{
+            PreparedStatement ps = connection.prepareStatement(codigoSql);
+            ps.setInt(1, ((Usuario)model).getIdUsuario());
+            ps.execute();
+            ps.close();
+            connection.close();
+            return true;
+        }catch(SQLException ex){
+            Logger.getLogger(TFilme.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
     }
     
 }

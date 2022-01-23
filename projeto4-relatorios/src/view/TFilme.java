@@ -220,7 +220,7 @@ public class TFilme extends javax.swing.JInternalFrame {
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaFilme().setVisible(true);
+                new TFilme().setVisible(true);
             }
         });
     }

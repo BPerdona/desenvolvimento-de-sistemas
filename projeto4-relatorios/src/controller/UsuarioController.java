@@ -9,5 +9,6 @@ public class UsuarioController extends Controller{
     
     public UsuarioController(){
         this.dao = new UsuarioDao();
+        this.consultar(new Usuario());
     }
 }

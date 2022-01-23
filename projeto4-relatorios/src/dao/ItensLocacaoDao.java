@@ -8,11 +8,11 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import view.TelaCliente;
+import view.TCliente;
 import model.ItensLocacao;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import view.TelaDevolucao;
+import view.TDevolucao;
 
 public class ItensLocacaoDao implements Dao{
 
@@ -36,7 +36,7 @@ public class ItensLocacaoDao implements Dao{
             connection.close();
         }
         catch(SQLException ex){
-            Logger.getLogger(TelaDevolucao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TDevolucao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return itensLoc;
     }
@@ -60,7 +60,7 @@ public class ItensLocacaoDao implements Dao{
             connection.close();
         }
         catch(SQLException ex){
-            Logger.getLogger(TelaCliente.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
     }   
@@ -85,7 +85,7 @@ public class ItensLocacaoDao implements Dao{
             return true;
         }
         catch(SQLException ex){
-            Logger.getLogger(TelaDevolucao.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TDevolucao.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }
