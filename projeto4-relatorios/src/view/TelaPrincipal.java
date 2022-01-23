@@ -93,6 +93,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         nomeUtilizador.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         nomeUtilizador.setForeground(new java.awt.Color(255, 102, 102));
+        nomeUtilizador.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         nomeUtilizador.setText(" ");
 
         deskTop.setLayer(nomeUtilizador, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -101,15 +102,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         deskTop.setLayout(deskTopLayout);
         deskTopLayout.setHorizontalGroup(
             deskTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(deskTopLayout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deskTopLayout.createSequentialGroup()
+                .addContainerGap(715, Short.MAX_VALUE)
                 .addComponent(nomeUtilizador, javax.swing.GroupLayout.PREFERRED_SIZE, 411, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(517, Short.MAX_VALUE))
+                .addGap(15, 15, 15))
         );
         deskTopLayout.setVerticalGroup(
             deskTopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, deskTopLayout.createSequentialGroup()
-                .addContainerGap(632, Short.MAX_VALUE)
+                .addContainerGap(681, Short.MAX_VALUE)
                 .addComponent(nomeUtilizador, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -224,11 +225,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        new TelaLocacao().setVisible(true);
+        TLocacao locacao = new TLocacao();
+        deskTop.add(locacao);
+        locacao.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        new TelaDevolucao().setVisible(true);
+        TDevolucao devolucao = new TDevolucao();
+        deskTop.add(devolucao);
+        devolucao.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
 
