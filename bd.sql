@@ -77,20 +77,56 @@ ENGINE = InnoDB;
 
 CREATE UNIQUE INDEX `idItensLocacao_UNIQUE` ON `exemplo`.`itensLocacao` (`idItensLocacao` ASC);
 
+-- -----------------------------------------------------
+-- Table `exemplo`.`perfilUsuario`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `exemplo`.`perfilUsuario` ;
+
+CREATE TABLE IF NOT EXISTS `exemplo`.`perfilUsuario` (
+  `idPerfilUsuario` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
+  `descricao` VARCHAR(500) NOT NULL,
+  `statusTupla` SMALLINT NOT NULL DEFAULT 1,
+  `dataCadastro` DATETIME NULL,
+  PRIMARY KEY (`idPerfilUsuario`))
+ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `idperfilUsuario_UNIQUE` ON `exemplo`.`perfilUsuario` (`idPerfilUsuario` ASC);
+
+-- -----------------------------------------------------
+-- Table `exemplo`.`usuario`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `exemplo`.`usuario` ;
+
+CREATE TABLE IF NOT EXISTS `exemplo`.`usuario` (
+  `idUsuario` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(100) NOT NULL,
+  `login` VARCHAR(45) NOT NULL,
+  `senha` BLOB NOT NULL,
+  `statusTupla` SMALLINT NOT NULL DEFAULT 1,
+  `perfilUsuario_idPerfilUsuario` INT NOT NULL,
+  `dataCadastro` DATETIME NULL,
+  PRIMARY KEY (`idUsuario`))
+ENGINE = InnoDB;
+
+CREATE UNIQUE INDEX `idusuario_UNIQUE` ON `exemplo`.`usuario` (`idUsuario` ASC);
+
 USE `exemplo`;
 
 DELIMITER $$
 
-USE `exemplo`$$
 DROP TRIGGER IF EXISTS `exemplo`.`dataCadastro` $$
-
-USE `exemplo`$$
 CREATE TRIGGER dataCadastro BEFORE INSERT ON cliente FOR EACH ROW SET NEW.dataCadastro = NOW()$$
 
-USE `exemplo`$$
 DROP TRIGGER IF EXISTS `exemplo`.`dataLocacaoDevolucao` $$
-
-USE `exemplo`$$
 CREATE TRIGGER dataLocacaoDevolucao BEFORE INSERT ON locacao FOR EACH ROW SET NEW.dataLocacao = NOW(), NEW.dataDevolucao = ADDDATE(NOW(), INTERVAL 5 DAY)$$
 
+DROP TRIGGER IF EXISTS `exemplo`.`dataCadastroPerfilUsuario` $$
+CREATE TRIGGER dataCadastroPerfilUsuario BEFORE INSERT ON perfilUsuario FOR EACH ROW SET NEW.dataCadastro = NOW()$$
+
+DROP TRIGGER IF EXISTS `exemplo`.`dataCadastroUsuario` $$
+CREATE TRIGGER dataCadastroUsuario BEFORE INSERT ON usuario FOR EACH ROW SET NEW.dataCadastro = NOW()$$
+
 DELIMITER ;
+
+insert into usuario (nome, login, senha, perfilUsuario_idPerfilUsuario) values ('Admin', 'admin', md5('admin'), 1);
