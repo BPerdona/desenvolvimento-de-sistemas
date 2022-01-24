@@ -108,29 +108,27 @@ public class TUsuario extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textoLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2)
-                                    .addComponent(textoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(textoPassword)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel6)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(jLabel5)
-                                    .addComponent(boxCargo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(textoNome, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                                    .addComponent(textoLogin))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(textoPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(boxCargo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(buttonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buttonGravar, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(126, 126, 126)
+                        .addGap(140, 140, 140)
                         .addComponent(buttonRemover)))
                 .addContainerGap())
         );
@@ -191,7 +189,7 @@ public class TUsuario extends javax.swing.JInternalFrame {
             escolha=2;
         if(selected.equals("Não Administrativo"))
             escolha=3;
-        this.gravar(new Usuario(textoNome.getName(), textoLogin.getText(), String.valueOf(textoPassword.getPassword()), escolha));
+        this.gravar(new Usuario(textoNome.getText(), textoLogin.getText(), String.valueOf(textoPassword.getPassword()), escolha));
     }//GEN-LAST:event_buttonGravarActionPerformed
 
     private void buttonRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRemoverActionPerformed
@@ -227,16 +225,25 @@ public class TUsuario extends javax.swing.JInternalFrame {
         modeloCliente.addColumn("Id");
         modeloCliente.addColumn("Nome");
         modeloCliente.addColumn("Login");
+        modeloCliente.addColumn("Cargo");
         modeloCliente.addColumn("statusTupla");
         tabelaUsuario.setModel(modeloCliente);
         
         if(usuarios.size()>0){
             for(Usuario usuario:usuarios){
+                String aux="";
+                if(usuario.getPerfilUsuario_idPerfilUsuario()==1)
+                    aux="Administrador";
+                if(usuario.getPerfilUsuario_idPerfilUsuario()==2)
+                    aux="Atendente";
+                if(usuario.getPerfilUsuario_idPerfilUsuario()==3)
+                    aux="Não Administrativo";
                 modeloCliente.addRow(new Object[]{
                                     usuario.getIdUsuario(),
                                     usuario.getNome(),
                                     usuario.getLogin(),
-                                    usuario.getStatusTupla()});  
+                                    usuario.getStatusTupla(),
+                                    aux});  
             }
             this.setInterface(0);
         }
@@ -247,8 +254,7 @@ public class TUsuario extends javax.swing.JInternalFrame {
         textoNome.setText(usuario.getNome());
         textoLogin.setText(usuario.getLogin());
         textoPassword.setText(usuario.getSenha());
-        //Finalizar essa parte
-//        this.boxCargo.setSelectedItem(1);
+        boxCargo.setSelectedIndex(usuario.getPerfilUsuario_idPerfilUsuario()-1);
     }
     
     private void gravar(Usuario usuario){
