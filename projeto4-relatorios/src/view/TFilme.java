@@ -216,14 +216,6 @@ public class TFilme extends javax.swing.JInternalFrame {
         this.gravar(filme);
     }//GEN-LAST:event_botaoAlterarActionPerformed
 
-    public static void main(String args[]) {
-
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TFilme().setVisible(true);
-            }
-        });
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoAlterar;
