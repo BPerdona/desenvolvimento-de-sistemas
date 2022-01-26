@@ -1,11 +1,15 @@
 
 package view;
 
+import bd.ConnectionFactory;
 import controller.PerfilUsuarioController;
+import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.PerfilUsuario;
 import model.Usuario;
+import relatorio.Relatorio;
 
 public class TelaPrincipal extends javax.swing.JFrame {
     
@@ -55,9 +59,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
+        relatorioCliente = new javax.swing.JMenuItem();
+        relatorioFilme = new javax.swing.JMenuItem();
+        relatorioLocacao = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
 
@@ -129,24 +133,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenu3.setText("Relatório");
 
-        jMenuItem5.setText("Cliente");
-        jMenu3.add(jMenuItem5);
-
-        jMenuItem6.setText("Filme");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+        relatorioCliente.setText("Cliente");
+        relatorioCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
+                relatorioClienteActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem6);
+        jMenu3.add(relatorioCliente);
 
-        jMenuItem7.setText("Locação");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+        relatorioFilme.setText("Filme");
+        relatorioFilme.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
+                relatorioFilmeActionPerformed(evt);
             }
         });
-        jMenu3.add(jMenuItem7);
+        jMenu3.add(relatorioFilme);
+
+        relatorioLocacao.setText("Locação");
+        relatorioLocacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                relatorioLocacaoActionPerformed(evt);
+            }
+        });
+        jMenu3.add(relatorioLocacao);
 
         jMenuBar1.add(jMenu3);
 
@@ -178,13 +187,20 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
+    private void relatorioFilmeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatorioFilmeActionPerformed
+        InputStream inputStream = getClass().getResourceAsStream("/relatorio/jasper/Filmes.jasper");
+        new Relatorio("Filme", inputStream, new HashMap(), ConnectionFactory.getConnection());
+    }//GEN-LAST:event_relatorioFilmeActionPerformed
 
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
+    private void relatorioLocacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatorioLocacaoActionPerformed
+        HashMap hash = new HashMap<String, Object>();
+        String p = this.getClass().getResource("/relatorio/jasper/itensLocacao.jasper").getPath();
+        p = p.substring(0, p.lastIndexOf("/") + 1);
+        hash.put("SUBREPORT_DIR", p);
+        
+        InputStream inputStream = getClass().getResourceAsStream("/relatorio/jasper/Locacao.jasper");
+        new Relatorio("Locacao", inputStream, hash, ConnectionFactory.getConnection());
+    }//GEN-LAST:event_relatorioLocacaoActionPerformed
 
     private void itemClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemClienteActionPerformed
         TCliente cliente = new TCliente();
@@ -216,6 +232,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         usuario.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
+    private void relatorioClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatorioClienteActionPerformed
+        InputStream inputStream = getClass().getResourceAsStream("/relatorio/jasper/Clientes.jasper");
+        new Relatorio("Cliente", inputStream, new HashMap(), ConnectionFactory.getConnection());
+    }//GEN-LAST:event_relatorioClienteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane deskTop;
@@ -228,10 +248,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JLabel nomeUtilizador;
+    private javax.swing.JMenuItem relatorioCliente;
+    private javax.swing.JMenuItem relatorioFilme;
+    private javax.swing.JMenuItem relatorioLocacao;
     // End of variables declaration//GEN-END:variables
 }
